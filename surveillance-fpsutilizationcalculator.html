@@ -23,22 +23,19 @@
   header h1{font-size:17px;font-weight:600;line-height:1.2}
   header .model{margin-left:auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
   header input.model-name{background:#2e353c;border:1px solid #3d454d;color:var(--head-ink);padding:6px 10px;border-radius:4px;font-size:14px;font-weight:600;width:150px}
-  .codec-toggle{display:flex;border:1px solid #3d454d;border-radius:4px;overflow:hidden}
-  .codec-toggle button{background:#2e353c;color:#9aa6b1;border:none;padding:6px 14px;font-size:13px;font-weight:600;cursor:pointer}
-  .codec-toggle button.active{background:var(--accent);color:#fff}
-  main{max-width:1220px;margin:0 auto;padding:20px 24px 48px;display:flex;flex-direction:column;gap:18px}
+  main{max-width:1280px;margin:0 auto;padding:20px 24px 48px;display:flex;flex-direction:column;gap:18px}
   .panel{background:var(--panel);border:1px solid var(--panel-edge);border-radius:6px}
   .panel h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding:12px 16px;border-bottom:1px solid var(--panel-edge);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
   .panel h2 .hint{font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-faint);font-size:12px}
   .panel-body{padding:14px 16px}
-  .grid-2{display:grid;grid-template-columns:minmax(280px,380px) 1fr;gap:18px}
-  @media(max-width:900px){.grid-2{grid-template-columns:1fr}}
+  .grid-2{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:18px}
+  @media(max-width:980px){.grid-2{grid-template-columns:1fr}}
   table{width:100%;border-collapse:collapse}
-  th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;text-align:right;padding:6px 8px;border-bottom:1px solid var(--panel-edge)}
+  th{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);font-weight:600;text-align:right;padding:6px 8px;border-bottom:1px solid var(--panel-edge)}
   th:first-child,td:first-child{text-align:left}
   td{padding:6px 8px;text-align:right;border-bottom:1px solid #eef0f2;font-variant-numeric:tabular-nums}
-  td input[type=number],td input[type=text]{width:74px;padding:5px 6px;border:1px solid var(--panel-edge);border-radius:4px;font-size:13px;text-align:right;font-family:var(--mono);background:#fbfcfd}
-  td input[type=text]{text-align:left;width:104px;font-family:inherit}
+  td input[type=number]{width:66px;padding:5px 6px;border:1px solid var(--panel-edge);border-radius:4px;font-size:13px;text-align:right;font-family:var(--mono);background:#fbfcfd}
+  td input[type=text]{width:100px;padding:5px 6px;border:1px solid var(--panel-edge);border-radius:4px;font-size:13px;text-align:left;background:#fbfcfd}
   td select{padding:5px 4px;border:1px solid var(--panel-edge);border-radius:4px;font-size:13px;background:#fbfcfd}
   input:focus,select:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
   .res-chip{display:inline-flex;align-items:center;gap:7px;font-weight:600}
@@ -48,8 +45,14 @@
   .btn.x{border:none;background:none;color:var(--ink-faint);font-size:15px;padding:2px 6px;cursor:pointer}
   .btn.x:hover{color:var(--hot)}
   select.preset{padding:5px 8px;border:1px solid var(--panel-edge);border-radius:4px;background:#fbfcfd;font-size:12px;font-weight:600;color:var(--accent)}
+  .codec-tag{font-size:9.5px;font-weight:700;letter-spacing:.04em;color:var(--ink-faint);display:block;text-align:center;margin-bottom:2px}
+  .split-cell{display:flex;gap:6px;justify-content:flex-end}
+  .split-cell .sub{display:flex;flex-direction:column;align-items:center}
+  .split-cell input[type=number]{width:56px}
+  .split-cell .sub.locked input{background:#fdf6ec;border-color:#e4cfa5}
   .bar{position:relative;height:18px;background:#f0f2f4;border:1px solid var(--panel-edge);border-radius:4px;overflow:hidden;display:flex;min-width:130px}
   .bar .seg{height:100%}
+  .bar .seg.h264{opacity:.55}
   .bar.over{border-color:var(--hot);box-shadow:0 0 0 1px var(--hot)}
   .bar .limit{position:absolute;top:0;bottom:0;width:2px;background:var(--hot)}
   .util-cell{display:flex;align-items:center;gap:10px;justify-content:flex-end}
@@ -60,7 +63,7 @@
   .badge.hot{background:var(--hot-bg);color:var(--hot)}
   .nic{font-size:10.5px;padding:1px 7px}
   .summary{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:22px;align-items:start}
-  @media(max-width:900px){.summary{grid-template-columns:1fr}}
+  @media(max-width:980px){.summary{grid-template-columns:1fr}}
   .big-bar{height:34px}
   .verdict{font-size:26px;font-weight:800;font-family:var(--mono)}
   .verdict-line{display:flex;align-items:baseline;gap:12px;margin-bottom:10px}
@@ -79,14 +82,10 @@
 <header>
   <div>
     <div class="brand">Synology SE Field Tool</div>
-    <h1>Surveillance Station FPS Utilization</h1>
+    <h1>Surveillance Station FPS Utilization &mdash; Mixed Codec</h1>
   </div>
   <div class="model">
-    <input class="model-name" id="modelName" type="text" value="RS6426xs+" aria-label="NVR model name">
-    <div class="codec-toggle" role="group" aria-label="Codec">
-      <button id="btn265" class="active" onclick="setCodec('h265')">H.265</button>
-      <button id="btn264" onclick="setCodec('h264')">H.264</button>
-    </div>
+    <input class="model-name" id="modelName" type="text" value="RS4826xs+" aria-label="NVR model name">
     <button class="btn" onclick="copySummary(this)">Copy summary</button>
   </div>
 </header>
@@ -94,12 +93,12 @@
 <main>
   <div class="grid-2">
     <section class="panel">
-      <h2>NVR spec sheet <span class="hint" id="codecHint">(H.265 figures)</span>
+      <h2>NVR spec sheet <span class="hint">both codec pools</span>
         <select id="presetSelect" class="preset" style="margin-left:auto" onchange="if(this.value)loadPreset(this.value);this.value=''" aria-label="Load model preset"></select>
       </h2>
       <div class="panel-body">
         <table id="specTable"></table>
-        <p class="note">Presets pulled from current Synology product spec sheets (RS Plus / XS line + HD6500, verified Jul 2026). Every value stays editable. Each resolution is an independent FPS pool; a mixed deployment spends a fraction of each pool and the fractions must total &le; 100%.</p>
+        <p class="note">Presets from current Synology product spec sheets (RS Plus / XS line + HD6500, verified Jul 2026). H.265-capable streams draw from the H.265 pools; H.264-locked streams draw from the smaller H.264 pools. All fractions sum against one 100% budget.</p>
       </div>
     </section>
 
@@ -107,27 +106,29 @@
       <h2>Recording settings &amp; per-camera sizing <span class="hint">applied to every site</span></h2>
       <div class="panel-body" style="overflow-x:auto">
         <table id="settingsTable"></table>
-        <p class="note">Enter each class's per-camera bitrate (from the camera's stream settings or NVR Selector) &mdash; ingest Mbps uses it directly, and TB/camera is derived from Mbps &times; recording hrs/day &times; retention days using the same unit conversion as Synology's NVR Selector, so totals match it exactly. Sizing follows the &ldquo;Record as&rdquo; remap, so 4K cameras recorded as 5MP consume the 5MP bitrate. Leave bitrates blank to skip sizing.</p>
+        <p class="note">Per-camera bitrates come from the NVR Selector per codec &mdash; H.264 typically runs 1.5&ndash;2&times; the H.265 figure at the same resolution/FPS. TB/cam derivation matches the NVR Selector's unit convention. Sizing follows the &ldquo;Record as&rdquo; remap. Leave bitrates blank to skip sizing.</p>
       </div>
     </section>
   </div>
 
   <section class="panel">
-    <h2>Sites &mdash; camera counts by resolution class
+    <h2>Sites &mdash; stream counts by class and codec <span class="hint">amber inputs = H.264-locked hardware</span>
       <button class="btn" style="margin-left:auto" onclick="addSite()">+ Add site</button>
     </h2>
     <div class="panel-body" style="overflow-x:auto">
       <table id="sitesTable"></table>
-      <p class="note">Per-site columns assume <strong>one NVR of this model at each site</strong>. Bandwidth is camera ingest to the recorder; the NIC badge flags when a single 1 GbE link won't carry it (&gt;70% = plan for 10 GbE, &gt;100% = required). The fleet row models all sites recording to one central unit.</p>
+      <p class="note">Preloaded H.264-locked splits per RFQ Attachment A: Q3708-PVE, P3717-PLE, Q1786-LE, P1447-LE, P3807-PVE, M3058 (H.264-only Axis hardware) plus GDS3710 doorbells. Per-site columns assume <strong>one NVR of this model at each site</strong>; the fleet row models one central unit. NIC badge: &gt;70% of 1&nbsp;GbE = plan for 10&nbsp;GbE, &gt;100% = required.</p>
     </div>
   </section>
 
   <section class="panel">
-    <h2>Single central NVR &mdash; all sites combined</h2>
-    <div class="panel-body summary" id="combinedPanel"></div>
+    <h2>Single central NVR &mdash; all sites combined
+      <button class="btn" id="combinedToggle" style="margin-left:auto" onclick="toggleCombined()">Show</button>
+    </h2>
+    <div class="panel-body summary" id="combinedPanel" style="display:none"></div>
   </section>
 
-  <p class="footnote">Method: utilization = &Sigma; (cameras &times; recording FPS &divide; total FPS pool at that resolution). Spec figures assume continuous recording on a fully populated unit with RTSP; SRTP drops capacity to ~70% of stated figures, and analytics, playback, and other DSM workloads reduce real-world headroom &mdash; treat &gt;70% as the planning ceiling.</p>
+  <p class="footnote">Method: utilization = &Sigma; over classes and codecs (streams &times; recording FPS &divide; that codec's FPS pool for that resolution). Spec figures assume continuous recording with RTSP; SRTP drops capacity to ~70%, and analytics/playback reduce real-world headroom &mdash; treat &gt;70% as the planning ceiling.</p>
 </main>
 
 <script>
@@ -137,7 +138,8 @@ const CLASSES = [
   {id:'c5m',   label:'5MP',   color:'var(--seg-5m)'},
   {id:'c4k',   label:'4K',    color:'var(--seg-4k)'},
 ];
-// Total FPS pools per resolution [1080p, 3M, 5M, 4K], from Synology product specs (Jul 2026)
+const CODECS = [{id:'h265',label:'H.265'},{id:'h264',label:'H.264'}];
+// Total FPS pools [1080p, 3M, 5M, 4K] from Synology product specs (Jul 2026)
 const PRESETS = {
   'XS+ / XS Series': {
     'RS6426xs+': {h265:[8550,2800,2000,1200], h264:[2800,2000,1200,850]},
@@ -165,24 +167,24 @@ function specFromPreset(p){
   const mk = a => ({c1080:{fps:a[0]}, c3m:{fps:a[1]}, c5m:{fps:a[2]}, c4k:{fps:a[3]}});
   return {h265:mk(p.h265), h264:mk(p.h264)};
 }
+// counts per class: {h265: n, h264: n} — h264 = codec-locked hardware
 let state = {
-  codec:'h265',
-  specs: specFromPreset(PRESETS['XS+ / XS Series']['RS6426xs+']),
-  fps:   {c1080:30, c3m:30, c5m:30, c4k:30},
+  specs: specFromPreset(PRESETS['XS+ / XS Series']['RS4826xs+']),
+  fps:   {c1080:15, c3m:15, c5m:15, c4k:15},
   recordAs: {c1080:'c1080', c3m:'c3m', c5m:'c5m', c4k:'c4k'},
-  bitrate: {c1080:'', c3m:'', c5m:'', c4k:''},  // Mbps per camera (user input)
-  retention: 30,     // days of footage kept
-  hoursPerDay: 24,   // recording hours per day (NVR Selector style; continuous = 24)
+  bitrate: {h265:{c1080:'', c3m:'', c5m:'', c4k:''}, h264:{c1080:'', c3m:'', c5m:'', c4k:''}},
+  retention: 30,
+  hoursPerDay: 24,
+  showCombined: false,
   sites: [
-    {name:'BB', counts:{c1080:14, c3m:0, c5m:0, c4k:36}},
-    {name:'BC', counts:{c1080:1,  c3m:0, c5m:0, c4k:21}},
-    {name:'EH', counts:{c1080:17, c3m:0, c5m:1, c4k:48}},
-    {name:'HS', counts:{c1080:47, c3m:0, c5m:6, c4k:70}},
-    {name:'MS', counts:{c1080:26, c3m:0, c5m:3, c4k:73}},
+    {name:'BB', counts:{c1080:{h265:4, h264:7},  c3m:{h265:0,h264:0}, c5m:{h265:12,h264:4},  c4k:{h265:12,h264:1}}},
+    {name:'BC', counts:{c1080:{h265:0, h264:10}, c3m:{h265:0,h264:0}, c5m:{h265:18,h264:8},  c4k:{h265:15,h264:2}}},
+    {name:'EH', counts:{c1080:{h265:0, h264:8},  c3m:{h265:0,h264:0}, c5m:{h265:17,h264:11}, c4k:{h265:15,h264:0}}},
+    {name:'HS', counts:{c1080:{h265:3, h264:10}, c3m:{h265:0,h264:0}, c5m:{h265:59,h264:10}, c4k:{h265:22,h264:2}}},
+    {name:'MS', counts:{c1080:{h265:0, h264:2},  c3m:{h265:0,h264:0}, c5m:{h265:36,h264:14}, c4k:{h265:25,h264:1}}},
   ],
 };
 
-function setCodec(c){ state.codec=c; render(); }
 function loadPreset(key){
   for(const group of Object.values(PRESETS)){
     if(group[key]){
@@ -193,35 +195,41 @@ function loadPreset(key){
     }
   }
 }
-function addSite(){ state.sites.push({name:'Site '+(state.sites.length+1), counts:{c1080:0,c3m:0,c5m:0,c4k:0}}); render(); }
+function blankCounts(){ return {c1080:{h265:0,h264:0}, c3m:{h265:0,h264:0}, c5m:{h265:0,h264:0}, c4k:{h265:0,h264:0}}; }
+function addSite(){ state.sites.push({name:'Site '+(state.sites.length+1), counts:blankCounts()}); render(); }
 function removeSite(i){ state.sites.splice(i,1); render(); }
 function num(v){ v=parseFloat(v); return isFinite(v)&&v>=0 ? v : 0; }
-function hasSizing(){ return CLASSES.some(c=>state.bitrate[c.id]!=='' && num(state.bitrate[c.id])>0); }
-// TB per camera = Mbps ÷ 8 × 3,600 s/hr × hrs/day × days, converted MB→TB at 1024² to match Synology's NVR Selector
-function tbPerCam(id){ return num(state.bitrate[id]) * 0.00042915 * num(state.hoursPerDay) * num(state.retention); }
-function mbpsPerCam(id){ return num(state.bitrate[id]); }
+function hasSizing(){ return CODECS.some(k=>CLASSES.some(c=>state.bitrate[k.id][c.id]!=='' && num(state.bitrate[k.id][c.id])>0)); }
+// TB per camera per codec — NVR Selector unit convention (Mb→MB base-10, MB→TB base-1024)
+function tbPerCam(codec,id){ return num(state.bitrate[codec][id]) * 0.00042915 * num(state.hoursPerDay) * num(state.retention); }
 function fmt(n,d){ return n.toLocaleString(undefined,{maximumFractionDigits:d??1}); }
 
+// Remap counts through "record as", preserving codec split
 function effectiveCounts(counts){
-  const eff = {c1080:0,c3m:0,c5m:0,c4k:0};
-  for(const c of CLASSES) eff[state.recordAs[c.id]] += num(counts[c.id]);
+  const eff = blankCounts();
+  for(const c of CLASSES){
+    const t = state.recordAs[c.id];
+    eff[t].h265 += num(counts[c.id].h265);
+    eff[t].h264 += num(counts[c.id].h264);
+  }
   return eff;
 }
 function evaluate(counts){
-  const spec = state.specs[state.codec];
   const eff = effectiveCounts(counts);
-  let fpsUtil=0, tbTotal=0, mbpsTotal=0; const perClass={};
+  let util=0, tbTotal=0, mbpsTotal=0, cams=0; const perClass={};
   for(const c of CLASSES){
-    const n = eff[c.id];
-    const fpsUsed = n * num(state.fps[c.id]);
-    const fFrac = spec[c.id].fps>0 ? fpsUsed/spec[c.id].fps : 0;
-    const tb = n * tbPerCam(c.id);
-    const mbps = n * mbpsPerCam(c.id);
-    fpsUtil+=fFrac; tbTotal+=tb; mbpsTotal+=mbps;
-    perClass[c.id]={n, fpsUsed, fFrac, tb, mbps};
+    const n265 = eff[c.id].h265, n264 = eff[c.id].h264;
+    const fps = num(state.fps[c.id]);
+    const p265 = state.specs.h265[c.id].fps, p264 = state.specs.h264[c.id].fps;
+    const f265 = p265>0 ? n265*fps/p265 : 0;
+    const f264 = p264>0 ? n264*fps/p264 : 0;
+    const tb = n265*tbPerCam('h265',c.id) + n264*tbPerCam('h264',c.id);
+    const mbps = n265*num(state.bitrate.h265[c.id]) + n264*num(state.bitrate.h264[c.id]);
+    util += f265+f264; tbTotal+=tb; mbpsTotal+=mbps;
+    perClass[c.id]={n265,n264,f265,f264,tb,mbps};
   }
-  const cams = Object.values(counts).reduce((a,b)=>a+num(b),0);
-  return {eff, perClass, cams, binding:fpsUtil*100, tbTotal, mbpsTotal};
+  for(const c of CLASSES) cams += num(counts[c.id].h265)+num(counts[c.id].h264);
+  return {eff, perClass, cams, binding:util*100, tbTotal, mbpsTotal};
 }
 
 function statusOf(pct){
@@ -242,9 +250,10 @@ function barHTML(res, big){
   const scale = over ? 100/res.binding : 1;
   let segs='';
   for(const c of CLASSES){
-    const frac = res.perClass[c.id].fFrac;
-    const w = frac*100*scale;
-    if(w>0.15) segs+=`<div class="seg" style="width:${w}%;background:${c.color}" title="${c.label}: ${(frac*100).toFixed(1)}% of budget"></div>`;
+    const p = res.perClass[c.id];
+    const w265 = p.f265*100*scale, w264 = p.f264*100*scale;
+    if(w265>0.15) segs+=`<div class="seg" style="width:${w265}%;background:${c.color}" title="${c.label} H.265: ${(p.f265*100).toFixed(1)}% of budget"></div>`;
+    if(w264>0.15) segs+=`<div class="seg h264" style="width:${w264}%;background:${c.color}" title="${c.label} H.264-locked: ${(p.f264*100).toFixed(1)}% of budget"></div>`;
   }
   const limit = over ? `<div class="limit" style="left:${100*scale}%"></div>` : '';
   return `<div class="bar ${over?'over':''} ${big?'big-bar':''}">${segs}${limit}</div>`;
@@ -263,105 +272,109 @@ function renderPresetSelect(){
 }
 
 function renderSpecs(){
-  const spec = state.specs[state.codec];
-  let html = `<thead><tr><th>Resolution</th><th>Total FPS pool</th></tr></thead><tbody>`;
+  let html = `<thead><tr><th>Resolution</th><th>H.265 pool</th><th>H.264 pool</th></tr></thead><tbody>`;
   for(const c of CLASSES){
     html += `<tr>
       <td><span class="res-chip"><span class="dot" style="background:${c.color}"></span>${c.label}</span></td>
-      <td><input type="number" min="0" value="${spec[c.id].fps}" onchange="state.specs[state.codec].${c.id}.fps=num(this.value);render()"></td></tr>`;
+      <td><input type="number" min="0" value="${state.specs.h265[c.id].fps}" onchange="state.specs.h265.${c.id}.fps=num(this.value);render()"></td>
+      <td><input type="number" min="0" value="${state.specs.h264[c.id].fps}" onchange="state.specs.h264.${c.id}.fps=num(this.value);render()"></td></tr>`;
   }
   document.getElementById('specTable').innerHTML = html+'</tbody>';
-  document.getElementById('codecHint').textContent = state.codec==='h265' ? '(H.265 figures)' : '(H.264 figures)';
-  document.getElementById('btn265').classList.toggle('active', state.codec==='h265');
-  document.getElementById('btn264').classList.toggle('active', state.codec==='h264');
 }
 
 function renderSettings(){
-  let html = `<thead><tr><th>Camera class</th><th>Recording FPS</th><th>Record as</th><th>Bitrate (Mbps) / cam</th><th>&rarr; TB / cam</th></tr></thead><tbody>`;
+  let html = `<thead><tr><th>Camera class</th><th>Recording FPS</th><th>Record as</th><th>H.265 Mbps/cam</th><th>H.264 Mbps/cam</th><th>&rarr; TB/cam (265 / 264)</th></tr></thead><tbody>`;
   for(const c of CLASSES){
     const opts = CLASSES.map(t=>`<option value="${t.id}" ${state.recordAs[c.id]===t.id?'selected':''}>${t.label}${t.id===c.id?' (native)':''}</option>`).join('');
-    const tb = tbPerCam(c.id);
+    const t265 = tbPerCam('h265',c.id), t264 = tbPerCam('h264',c.id);
     html += `<tr>
-      <td><span class="res-chip"><span class="dot" style="background:${c.color}"></span>${c.label} cameras</span></td>
+      <td><span class="res-chip"><span class="dot" style="background:${c.color}"></span>${c.label}</span></td>
       <td><input type="number" min="1" max="60" value="${state.fps[c.id]}" onchange="state.fps.${c.id}=num(this.value);render()"></td>
       <td><select onchange="state.recordAs.${c.id}=this.value;render()">${opts}</select></td>
-      <td><input type="number" min="0" step="0.1" placeholder="&mdash;" value="${state.bitrate[c.id]}" onchange="state.bitrate.${c.id}=this.value;render()"></td>
-      <td>${num(state.bitrate[c.id])>0 ? fmt(tb,2) : '&mdash;'}</td></tr>`;
+      <td><input type="number" min="0" step="0.1" placeholder="&mdash;" value="${state.bitrate.h265[c.id]}" onchange="state.bitrate.h265.${c.id}=this.value;render()"></td>
+      <td><input type="number" min="0" step="0.1" placeholder="&mdash;" value="${state.bitrate.h264[c.id]}" onchange="state.bitrate.h264.${c.id}=this.value;render()"></td>
+      <td>${num(state.bitrate.h265[c.id])>0?fmt(t265,2):'&mdash;'} / ${num(state.bitrate.h264[c.id])>0?fmt(t264,2):'&mdash;'}</td></tr>`;
   }
   html += `</tbody><tfoot><tr>
       <td>Retention &amp; schedule</td>
       <td colspan="2" style="text-align:right">Retention (days) <input type="number" min="1" max="3650" value="${state.retention}" onchange="state.retention=num(this.value);render()"></td>
-      <td colspan="2" style="text-align:right">Recording (hrs/day) <input type="number" min="1" max="24" value="${state.hoursPerDay}" onchange="state.hoursPerDay=Math.min(24,num(this.value));render()"></td>
+      <td colspan="3" style="text-align:right">Recording (hrs/day) <input type="number" min="1" max="24" value="${state.hoursPerDay}" onchange="state.hoursPerDay=Math.min(24,num(this.value));render()"></td>
     </tr></tfoot>`;
   document.getElementById('settingsTable').innerHTML = html;
 }
 
+function countCell(i, cid){
+  const v = state.sites[i].counts[cid];
+  return `<td><div class="split-cell">
+    <span class="sub"><span class="codec-tag">265</span><input type="number" min="0" value="${v.h265}" onchange="state.sites[${i}].counts.${cid}.h265=num(this.value);render()"></span>
+    <span class="sub locked"><span class="codec-tag">264</span><input type="number" min="0" value="${v.h264}" onchange="state.sites[${i}].counts.${cid}.h264=num(this.value);render()"></span>
+  </div></td>`;
+}
+
 function renderSites(){
-  const showTB = hasSizing(), showBW = showTB;
+  const showS = hasSizing();
   let html = `<thead><tr><th>Site</th>`;
   for(const c of CLASSES) html+=`<th>${c.label}</th>`;
-  html += `<th>Cameras</th>`;
-  if(showTB) html += `<th>Storage (TB)</th>`;
-  if(showBW) html += `<th>Ingest (Mbps)</th>`;
+  html += `<th>Streams</th>`;
+  if(showS) html += `<th>Storage (TB)</th><th>Ingest (Mbps)</th>`;
   html += `<th style="text-align:right">Utilization &mdash; one ${esc(modelName())} per site</th><th></th></tr></thead><tbody>`;
-  const totals = {c1080:0,c3m:0,c5m:0,c4k:0};
+  const totals = blankCounts();
   state.sites.forEach((s,i)=>{
     const res = evaluate(s.counts);
     html += `<tr><td><input type="text" value="${esc(s.name)}" onchange="state.sites[${i}].name=this.value;render()"></td>`;
     for(const c of CLASSES){
-      totals[c.id]+=num(s.counts[c.id]);
-      html += `<td><input type="number" min="0" value="${s.counts[c.id]}" onchange="state.sites[${i}].counts.${c.id}=num(this.value);render()"></td>`;
+      totals[c.id].h265 += num(s.counts[c.id].h265);
+      totals[c.id].h264 += num(s.counts[c.id].h264);
+      html += countCell(i, c.id);
     }
     html += `<td>${res.cams}</td>`;
-    if(showTB) html += `<td>${fmt(res.tbTotal)}</td>`;
-    if(showBW) html += `<td>${fmt(res.mbpsTotal,0)} ${nicBadge(res.mbpsTotal)}</td>`;
+    if(showS) html += `<td>${fmt(res.tbTotal)}</td><td>${fmt(res.mbpsTotal,0)} ${nicBadge(res.mbpsTotal)}</td>`;
     html += `<td>${utilCell(res)}</td><td><button class="btn x" title="Remove site" onclick="removeSite(${i})">&#10005;</button></td></tr>`;
   });
   const all = evaluate(totals);
   html += `</tbody><tfoot><tr><td>All sites</td>`;
-  for(const c of CLASSES) html+=`<td>${totals[c.id]}</td>`;
+  for(const c of CLASSES) html+=`<td style="white-space:nowrap">${totals[c.id].h265} <span style="color:var(--ink-faint)">/ ${totals[c.id].h264}</span></td>`;
   html += `<td>${all.cams}</td>`;
-  if(showTB) html += `<td>${fmt(all.tbTotal)}</td>`;
-  if(showBW) html += `<td>${fmt(all.mbpsTotal,0)} ${nicBadge(all.mbpsTotal)}</td>`;
-  html += `<td>${utilCell(all)}</td><td></td></tr></tfoot>`;
+  if(showS) html += `<td>${fmt(all.tbTotal)}</td><td>${fmt(all.mbpsTotal,0)}</td>`;
+  html += `<td></td><td></td></tr></tfoot>`;
   document.getElementById('sitesTable').innerHTML = html;
   return {totals, all};
 }
 
+function toggleCombined(){ state.showCombined = !state.showCombined; render(); }
+
 function renderCombined(all){
+  const panel = document.getElementById('combinedPanel');
+  document.getElementById('combinedToggle').textContent = state.showCombined ? 'Hide' : 'Show';
+  panel.style.display = state.showCombined ? '' : 'none';
+  if(!state.showCombined){ panel.innerHTML=''; return; }
   const s = statusOf(all.binding);
-  const showTB = hasSizing(), showBW = showTB;
-  const spec = state.specs[state.codec];
+  const showS = hasSizing();
   let rows='';
   for(const c of CLASSES){
     const p = all.perClass[c.id];
-    if(p.n===0) continue;
+    if(p.n265+p.n264===0) continue;
     rows += `<tr><td><span class="res-chip"><span class="dot" style="background:${c.color}"></span>${c.label}</span></td>
-      <td>${p.n} cams</td>
-      <td>${p.fpsUsed.toLocaleString()} / ${spec[c.id].fps.toLocaleString()} FPS</td>`;
-    if(showTB) rows += `<td>${fmt(p.tb)}</td>`;
-    if(showBW) rows += `<td>${fmt(p.mbps,0)}</td>`;
-    rows += `<td>${(p.fFrac*100).toFixed(1)}%</td></tr>`;
+      <td>${p.n265} / ${p.n264}</td>
+      <td>${(p.f265*100).toFixed(1)}% + ${(p.f264*100).toFixed(1)}%</td>`;
+    if(showS) rows += `<td>${fmt(p.tb)}</td><td>${fmt(p.mbps,0)}</td>`;
+    rows += `</tr>`;
   }
-  const legend = CLASSES.map(c=>`<span><span class="dot" style="background:${c.color}"></span>${c.label}</span>`).join('');
+  const legend = CLASSES.map(c=>`<span><span class="dot" style="background:${c.color}"></span>${c.label}</span>`).join('') +
+    `<span><span class="dot" style="background:#9aa6b1;opacity:.55"></span>faded = H.264-locked share</span>`;
   let sizing = '';
-  if(showTB || showBW){
-    sizing = `<div class="sizing-line">`;
-    if(showTB) sizing += `<span>Total storage: <b>${fmt(all.tbTotal)} TB</b></span>`;
-    if(showBW) sizing += `<span>Total ingest: <b>${fmt(all.mbpsTotal,0)} Mbps</b> ${nicBadge(all.mbpsTotal)}</span>`;
-    sizing += `</div>`;
+  if(showS){
+    sizing = `<div class="sizing-line"><span>Total storage: <b>${fmt(all.tbTotal)} TB</b></span><span>Total ingest: <b>${fmt(all.mbpsTotal,0)} Mbps</b> ${nicBadge(all.mbpsTotal)}</span></div>`;
   }
-  let thead = `<th>Recording class</th><th>Cameras</th><th>FPS pool</th>`;
-  if(showTB) thead += `<th>TB</th>`;
-  if(showBW) thead += `<th>Mbps</th>`;
-  thead += `<th>Share of budget</th>`;
+  let thead = `<th>Class</th><th>Streams (265 / 264)</th><th>Budget (265 + 264)</th>`;
+  if(showS) thead += `<th>TB</th><th>Mbps</th>`;
   document.getElementById('combinedPanel').innerHTML = `
     <div>
       <div class="verdict-line"><span class="verdict" style="color:${all.binding>100?'var(--hot)':all.binding>70?'var(--warn)':'var(--ok)'}">${all.binding.toFixed(1)}%</span><span class="badge ${s.cls}">${s.text}</span></div>
       ${barHTML(all,true)}
       <div class="legend">${legend}</div>
       ${sizing}
-      <p class="note">${all.cams} cameras on one ${esc(modelName())} &middot; ${state.codec==='h265'?'H.265':'H.264'} ${all.binding>100?`&mdash; <strong style="color:var(--hot)">${(all.binding-100).toFixed(0)} pts over budget</strong>`:''}</p>
+      <p class="note">${all.cams} streams on one ${esc(modelName())} ${all.binding>100?`&mdash; <strong style="color:var(--hot)">${(all.binding-100).toFixed(0)} pts over budget</strong>`:''}</p>
     </div>
     <table><thead><tr>${thead}</tr></thead><tbody>${rows}</tbody></table>`;
 }
@@ -370,25 +383,26 @@ function modelName(){ return document.getElementById('modelName').value || 'NVR'
 function esc(str){ return String(str).replace(/[&<>"]/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
 
 function copySummary(btn){
-  const showTB = hasSizing(), showBW = showTB;
-  const lines = [`Surveillance Station utilization - ${modelName()} (${state.codec==='h265'?'H.265':'H.264'})`];
+  const showS = hasSizing();
+  const lines = [`Surveillance Station utilization - ${modelName()} (mixed codec: H.265 + H.264-locked streams)`];
   const remap = CLASSES.filter(c=>state.recordAs[c.id]!==c.id).map(c=>`${c.label}->${CLASSES.find(t=>t.id===state.recordAs[c.id]).label}`).join(', ');
-  lines.push(`FPS settings: ${CLASSES.map(c=>c.label+'@'+state.fps[c.id]).join(', ')}${remap?` | Record-as: ${remap}`:''}`);
-  if(showTB) lines.push(`Sizing: ${CLASSES.filter(c=>num(state.bitrate[c.id])>0).map(c=>c.label+' '+state.bitrate[c.id]+' Mbps/cam').join(', ')} | ${state.retention} days retention @ ${state.hoursPerDay} hrs/day`);
-  const totals={c1080:0,c3m:0,c5m:0,c4k:0};
+  lines.push(`FPS: ${CLASSES.map(c=>c.label+'@'+state.fps[c.id]).join(', ')}${remap?` | Record-as: ${remap}`:''}`);
+  if(showS) lines.push(`Bitrates H.265: ${CLASSES.map(c=>c.label+' '+(state.bitrate.h265[c.id]||'-')).join(', ')} | H.264: ${CLASSES.map(c=>c.label+' '+(state.bitrate.h264[c.id]||'-')).join(', ')} | ${state.retention} days @ ${state.hoursPerDay} hrs/day`);
+  const totals = blankCounts();
   for(const s of state.sites){
     const r = evaluate(s.counts);
-    for(const c of CLASSES) totals[c.id]+=num(s.counts[c.id]);
+    for(const c of CLASSES){ totals[c.id].h265+=num(s.counts[c.id].h265); totals[c.id].h264+=num(s.counts[c.id].h264); }
     let extra = '';
-    if(showTB) extra += ` | ${fmt(r.tbTotal)} TB`;
-    if(showBW) extra += ` | ${fmt(r.mbpsTotal,0)} Mbps${r.mbpsTotal>1000?' (10GbE required)':r.mbpsTotal>700?' (10GbE recommended)':''}`;
-    lines.push(`${s.name}: ${r.cams} cams -> ${r.binding.toFixed(1)}% (${statusOf(r.binding).text})${extra}`);
+    if(showS) extra = ` | ${fmt(r.tbTotal)} TB | ${fmt(r.mbpsTotal,0)} Mbps${r.mbpsTotal>1000?' (10GbE required)':r.mbpsTotal>700?' (10GbE recommended)':''}`;
+    const locked = CLASSES.reduce((a,c)=>a+num(s.counts[c.id].h264),0);
+    lines.push(`${s.name}: ${r.cams} streams (${locked} H.264-locked) -> ${r.binding.toFixed(1)}% (${statusOf(r.binding).text})${extra}`);
   }
-  const all = evaluate(totals);
-  let extra = '';
-  if(showTB) extra += ` | ${fmt(all.tbTotal)} TB total`;
-  if(showBW) extra += ` | ${fmt(all.mbpsTotal,0)} Mbps ingest${all.mbpsTotal>1000?' (10GbE required)':all.mbpsTotal>700?' (10GbE recommended)':''}`;
-  lines.push(`Single central ${modelName()}: ${all.cams} cams -> ${all.binding.toFixed(1)}% (${statusOf(all.binding).text})${extra}`);
+  if(state.showCombined){
+    const all = evaluate(totals);
+    let extra = '';
+    if(showS) extra = ` | ${fmt(all.tbTotal)} TB | ${fmt(all.mbpsTotal,0)} Mbps${all.mbpsTotal>1000?' (10GbE required)':all.mbpsTotal>700?' (10GbE recommended)':''}`;
+    lines.push(`Single central ${modelName()}: ${all.cams} streams -> ${all.binding.toFixed(1)}% (${statusOf(all.binding).text})${extra}`);
+  }
   navigator.clipboard.writeText(lines.join('\n')).then(()=>{ btn.textContent='Copied \u2713'; setTimeout(()=>btn.textContent='Copy summary',1600); });
 }
 
